@@ -46,6 +46,7 @@
                 <action id="changePassword" type="changePassword"/>
                 <action id="resetPassword" type="resetPassword"/>
                 <action id="resetRememberMeToken" type="resetRememberMeToken"/>
+                <action id="sendEmail" caption="msg://sendEmail.caption" icon="SEND"/>
             </actions>
             <columns>
                 <column id="username"/>
@@ -68,6 +69,7 @@
                         <action id="usersTable.resetRememberMeToken"/>
                     </actions>
                 </popupButton>
+                <button id="sendEmailBtn" action="usersTable.sendEmail"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

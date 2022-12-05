@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://postsScreen.caption">
+    <data>
+        <collection id="postsDc" class="com.company.jmixpm.entity.Post">
+            <loader id="postsDl">
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <layout>
+        <table id="postsTable"
+               dataContainer="postsDc"
+               width="100%" height="100%">
+            <actions>
+                <action id="viewUserInfo"
+                        caption="msg://viewUserInfo.caption"
+                        icon="VIEW_ACTION"
+                        type="itemTracking"/>
+            </actions>
+            <columns>
+                <column id="title"/>
+                <column id="body"/>
+            </columns>
+            <buttonsPanel>
+                <button action="postsTable.viewUserInfo"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>

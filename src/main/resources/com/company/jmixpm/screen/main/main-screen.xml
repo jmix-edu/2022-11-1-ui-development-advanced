@@ -98,6 +98,7 @@
                     </hbox>
 
                     <calendar id="tasksCalendar" dataContainer="tasksDc" width="100%"
+                              navigationButtonsVisible="true"
                               startDateProperty="startDate"
                               endDateProperty="endDate"
                               captionProperty="caption"
