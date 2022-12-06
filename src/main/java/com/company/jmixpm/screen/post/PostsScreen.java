@@ -30,7 +30,17 @@ public class PostsScreen extends Screen {
         return postService.fetchPosts();
     }
 
-    @Subscribe("postsTable.viewUserInfo")
+    @Install(to = "userInfoScreenFacet", subject = "screenConfigurer")
+    private void userInfoScreenFacetScreenConfigurer(UserInfoScreen userInfoScreen) {
+        Post selected = postsTable.getSingleSelected();
+        if (selected == null || selected.getUserId() == null) {
+            throw new IllegalStateException("Np post selected");
+        }
+
+        userInfoScreen.withUserId(selected.getUserId());
+    }
+
+    /*@Subscribe("postsTable.viewUserInfo")
     public void onPostsTableViewUserInfo(Action.ActionPerformedEvent event) {
         Post selected = postsTable.getSingleSelected();
         if (selected == null || selected.getUserId() == null) {
@@ -42,5 +52,7 @@ public class PostsScreen extends Screen {
                 .build()
                 .withUserId(selected.getUserId())
                 .show();
-    }
+    }*/
+
+
 }

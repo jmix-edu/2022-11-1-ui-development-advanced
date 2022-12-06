@@ -7,8 +7,10 @@ import io.jmix.ui.UiComponents;
 import io.jmix.ui.action.Action;
 import io.jmix.ui.app.inputdialog.DialogActions;
 import io.jmix.ui.app.inputdialog.DialogOutcome;
+import io.jmix.ui.app.inputdialog.InputDialog;
 import io.jmix.ui.app.inputdialog.InputParameter;
 import io.jmix.ui.component.GroupTable;
+import io.jmix.ui.component.NotificationFacet;
 import io.jmix.ui.component.TextArea;
 import io.jmix.ui.executor.BackgroundTask;
 import io.jmix.ui.executor.TaskLifeCycle;
@@ -31,6 +33,9 @@ public class UserBrowse extends StandardLookup<User> {
     private GroupTable<User> usersTable;
 
     @Autowired
+    private NotificationFacet mailSentNotification;
+
+    @Autowired
     private CollectionContainer<User> usersDc;
 
     @Autowired
@@ -42,7 +47,7 @@ public class UserBrowse extends StandardLookup<User> {
     @Autowired
     private Notifications notifications;
 
-    @Subscribe("usersTable.sendEmail")
+    /*@Subscribe("usersTable.sendEmail")
     public void onUsersTableSendEmail(Action.ActionPerformedEvent event) {
         dialogs.createInputDialog(this)
                 .withCaption(messageBundle.getMessage("sendEmailDialog.caption"))
@@ -75,6 +80,21 @@ public class UserBrowse extends StandardLookup<User> {
                     }
                 })
                 .show();
+    }*/
+
+    @Subscribe("emailDialog")
+    public void onEmailDialogInputDialogClose(InputDialog.InputDialogCloseEvent closeEvent) {
+        if (closeEvent.closedWith(DialogOutcome.OK)) {
+            String title = closeEvent.getValue("title");
+            String body = closeEvent.getValue("body");
+
+            Set<User> selected = usersTable.getSelected();
+            Collection<User> users = selected.isEmpty()
+                    ? usersDc.getItems()
+                    : selected;
+
+            doSendEmail(title, body, users);
+        }
     }
 
     private void doSendEmail(String title, String body, Collection<User> users) {
@@ -120,10 +140,7 @@ public class UserBrowse extends StandardLookup<User> {
 
         @Override
         public void done(Void result) {
-            notifications.create()
-                    .withCaption("Email has been sent")
-                    .withType(Notifications.NotificationType.TRAY)
-                    .show();
+            mailSentNotification.show();
         }
 
         @Override
@@ -136,9 +153,9 @@ public class UserBrowse extends StandardLookup<User> {
 
         @Override
         public void progress(List<Integer> changes) {
-            notifications.create()
+            /*notifications.create()
                     .withCaption("Progress")
-                    .show();
+                    .show();*/
         }
     }
 }

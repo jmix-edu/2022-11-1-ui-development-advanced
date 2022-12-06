@@ -1,8 +1,11 @@
 package com.company.jmixpm.screen.user;
 
 import com.company.jmixpm.entity.User;
+import com.company.jmixpm.screen.address.AddressFragment;
 import io.jmix.core.EntityStates;
+import io.jmix.ui.Fragments;
 import io.jmix.ui.Notifications;
+import io.jmix.ui.component.HBoxLayout;
 import io.jmix.ui.component.PasswordField;
 import io.jmix.ui.component.TextField;
 import io.jmix.ui.navigation.Route;
@@ -17,6 +20,9 @@ import java.util.Objects;
 @EditedEntityContainer("userDc")
 @Route(value = "users/edit", parentPrefix = "users")
 public class UserEdit extends StandardEditor<User> {
+
+    @Autowired
+    private HBoxLayout wrapper;
 
     @Autowired
     private EntityStates entityStates;
@@ -38,6 +44,15 @@ public class UserEdit extends StandardEditor<User> {
 
     @Autowired
     private MessageBundle messageBundle;
+
+    @Autowired
+    private Fragments fragments;
+
+    @Subscribe
+    public void onInit(InitEvent event) {
+        AddressFragment addressFragment = fragments.create(this, AddressFragment.class);
+        wrapper.add(addressFragment.getFragment());
+    }
 
     @Subscribe
     public void onInitEntity(InitEntityEvent<User> event) {
