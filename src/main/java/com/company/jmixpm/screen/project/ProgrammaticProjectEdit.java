@@ -30,7 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDate;
 import java.util.Collection;
 
-@PrimaryEditorScreen(Project.class)
+//@PrimaryEditorScreen(Project.class)
 @DialogMode(width = "800px", height = "600px")
 @UiController("ProgrammaticProjectEdit")
 public class ProgrammaticProjectEdit extends StandardEditor<Project> {

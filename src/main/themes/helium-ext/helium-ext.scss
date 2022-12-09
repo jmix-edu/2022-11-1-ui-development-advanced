@@ -1,0 +1,19 @@
+@import "../helium/helium";
+
+@mixin helium-ext {
+  @include helium;
+
+  &.cobalt {
+    /* Basic */
+    --primary-color: #0055A6;
+    --primary-color_rgb: 0, 85, 166;
+
+    /* Common */
+    --primary-color-shade-1: #004C95;
+    --primary-color-shade-2: #004484;
+    --primary-dim-color: #C6D1EC;
+
+    /* Button */
+    --button-primary-focused-border-color: #C6D1EC;
+  }
+}
