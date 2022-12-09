@@ -3,6 +3,34 @@
 @mixin helium-ext {
   @include helium;
 
+  .color-field {
+    display: flex;
+    width: $v-default-field-width;
+
+    .color-field-picker > .v-button {
+      border: 1px solid var(--border-color);
+      border-top-right-radius: $v-border-radius;
+      border-bottom-right-radius: $v-border-radius;
+    }
+
+    .v-caption-color-field-value {
+      display: none;
+    }
+  }
+
+  .v-table-row-cs.no-estimated-efforts {
+    color: var(--error-color);
+  }
+
+  .v-table-cell-content.no-estimated-efforts .v-table-cell-wrapper {
+    &:before {
+      content: "\2757";
+      //❗️
+      //red exclamation mark
+      //Unicode: U+2757 U+FE0F, UTF-8: E2 9D 97 EF B8 8F
+    }
+  }
+
   &.cobalt {
     /* Basic */
     --primary-color: #0055A6;

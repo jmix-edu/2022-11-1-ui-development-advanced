@@ -29,14 +29,14 @@
             <label id="separator"
                    align="MIDDLE_CENTER"
                    css="margin: 0 10px 0 10px"
-                   value="|" visible="false"/>
+                   value="|"/>
             <label id="sizeLabel"
                    align="MIDDLE_LEFT"
                    stylename="bold"
-                   value="msg://io.jmix.ui.app.themesettings/themeSettings.sizeField.caption" visible="false"/>
+                   value="msg://io.jmix.ui.app.themesettings/themeSettings.sizeField.caption"/>
             <radioButtonGroup id="sizeField"
                               align="MIDDLE_LEFT"
-                              orientation="horizontal" visible="false"/>
+                              orientation="horizontal"/>
         </hbox>
         <groupBox id="previewBox" caption="msg://io.jmix.ui.app.themesettings/themeSettings.previewBox.caption"
                   width="100%">

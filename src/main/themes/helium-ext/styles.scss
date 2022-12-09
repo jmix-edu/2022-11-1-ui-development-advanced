@@ -5,4 +5,5 @@
 .helium-ext {
   @include addons;
   @include helium-ext;
+  @include theme-addon-css-variables;
 }
